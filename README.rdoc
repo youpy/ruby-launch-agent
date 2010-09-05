@@ -1,6 +1,18 @@
 = ruby-launch-agent
 
-Description goes here.
+A library to use launchd easily
+
+== Synopsis
+
+ require 'launch_agent'
+
+ agent = LaunchAgent::Daemon.new('ruby', '/path/to/foo.rb', 'arg1', 'arg2')
+
+ # load
+ agent.load
+
+ # unload
+ agent.unload
 
 == Note on Patches/Pull Requests
  
