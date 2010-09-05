@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/launch_agent.rb",
      "lib/launch_agent/daemon.rb",
+     "ruby-launch-agent.gemspec",
      "spec/daemon_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
