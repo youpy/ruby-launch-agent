@@ -44,7 +44,7 @@ module LaunchAgent
 </dict>
 </plist>
 PLIST
-      template % [job_id, xmlize_args]
+      template % [job_id, xmlized_args]
     end
 
     def job_id
@@ -53,7 +53,7 @@ PLIST
       end.join('__')
     end
 
-    def xmlize_args
+    def xmlized_args
       @args.inject([]) do |m, arg|
         m << "\t\t<string>#{arg}</string>"
       end.join("\n")
