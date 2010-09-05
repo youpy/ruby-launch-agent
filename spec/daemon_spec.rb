@@ -11,7 +11,7 @@ describe LaunchAgent::Daemon do
     File.unlink(@plist_filename) if File.exists?(@plist_filename)
   end
 
-  it 'shuld load and unload' do
+  it 'should load and unload' do
     @agent.should_not be_loaded
 
     @agent.load
