@@ -4,12 +4,12 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{ruby-launch-agent}
+  s.name = %q{launch-agent}
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["youpy"]
-  s.date = %q{2010-09-06}
+  s.date = %q{2010-10-07}
   s.description = %q{A library to use launchd easily}
   s.email = %q{youpy@buycheapviagraonlinenow.com}
   s.extra_rdoc_files = [

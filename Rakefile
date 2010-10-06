@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "ruby-launch-agent"
+    gem.name = "launch-agent"
     gem.summary = %Q{A library to use launchd easily}
     gem.description = %Q{A library to use launchd easily}
     gem.email = "youpy@buycheapviagraonlinenow.com"
