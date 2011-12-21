@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+%w/rubygems launch_agent/.each {|g| require g }
+
+def usage
+  print <<EOM
+usage: #{File.basename($0)} command [arg ...]
+EOM
+  exit 0
+end
+
+usage if ARGV.empty?
+
+agent = LaunchAgent::Daemon.new(*ARGV)
+action = agent.loaded? ? :unload : :load
+agent.send(action)
+warn '%s "%s"' % [action, ARGV.join(' ')]
