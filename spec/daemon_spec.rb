@@ -24,6 +24,11 @@ describe LaunchAgent::Daemon do
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
 	<key>Label</key>
 	<string>com.buycheapviagraonlinenow.ruby__foo_rb</string>
 	<key>ProgramArguments</key>
