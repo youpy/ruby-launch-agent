@@ -16,34 +16,7 @@ A library to use launchd easily
 
 == CLI
 
- $ launchagent daemon -h
-
-
- NAME
-       launchagent-daemon - load/unload a daemon-like agent
- 
- VERSION
-       launch-agent 0.1.0
-
- Usage: launchagent-daemon [--verbose] [--env] [--version] [--help] COMMAND [ARGS] {full command}
- 
- Load/Unload a daemon-like launchd agent
- 
- OPTIONS
-     -v, --verbose
-       verbose
- 
- 
-     -e, --env=<s>
-       additional environmental variables to be set before running the job. can specify multiple times
-
-
-     -r, --version
-       Print version and exit
-
-
-     -h, --help   
-       Show this message
+ $ launchagent -h
 
 == Note on Patches/Pull Requests
  
