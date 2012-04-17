@@ -18,6 +18,7 @@ A library to use launchd easily
 
  $ launchagent daemon -h
 
+
  NAME
        launchagent-daemon - load/unload a daemon-like agent
  
