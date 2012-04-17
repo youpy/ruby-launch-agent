@@ -4,6 +4,12 @@ describe LaunchAgent::Daemon do
   before do
     @plist_filename = File.expand_path('~/Library/LaunchAgents/com.buycheapviagraonlinenow.ruby__foo_rb.plist')
     @agent = LaunchAgent::Daemon.new('ruby', 'foo.rb')
+
+    # key exists
+    @agent['WorkingDirectory'] = '/foo/bar'
+
+    # key does not exists
+    @agent['XXX'] = 'YYY'
   end
 
   after do
@@ -21,7 +27,7 @@ describe LaunchAgent::Daemon do
     File.exists?(@plist_filename).should be_true
     open(@plist_filename).read.should eql(<<PLIST)
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>KeepAlive</key>
@@ -38,6 +44,8 @@ describe LaunchAgent::Daemon do
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
+	<key>WorkingDirectory</key>
+	<string>/foo/bar</string>
 </dict>
 </plist>
 PLIST
