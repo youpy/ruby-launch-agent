@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'launch_agent'
+require 'git-style-binary/command'
+
+GitStyleBinary.primary do
+  version "launch-agent #{LaunchAgent::VERSION}"
+end
