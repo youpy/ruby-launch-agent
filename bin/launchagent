@@ -18,7 +18,7 @@ EOS
   opt :interval, "causes the job to be started every N seconds", :type => Integer
 
   run do |command|
-    abort 'full command must be supplised' if command.argv.empty?
+    abort 'full command must be supplied' if command.argv.empty?
 
     daemon  = command.opts[:daemon]
     interval = command.opts[:interval]
