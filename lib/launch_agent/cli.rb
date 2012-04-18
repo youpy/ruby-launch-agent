@@ -17,7 +17,7 @@ module LaunchAgent
 
         if daemon
           agent = LaunchAgent::Daemon.new(*@argv)
-        elsif @opts[:interval]
+        elsif interval
           agent = LaunchAgent::Periodic.new(interval, *@argv)
         else
           raise 'at least one of --daemon and --interval must be set'
