@@ -20,7 +20,7 @@ describe CLI::OptionParser do
     end
   end
 
-  describe 'damon' do
+  describe 'daemon' do
     let(:opts) do
       @opts.merge(
         :daemon => true)
@@ -28,7 +28,7 @@ describe CLI::OptionParser do
 
     it_should_behave_like 'valid agent'
 
-    it 'should parse damon option' do
+    it 'should parse daemon option' do
       @plist['KeepAlive'].should eql({
           'SuccessfulExit' => false
         })
