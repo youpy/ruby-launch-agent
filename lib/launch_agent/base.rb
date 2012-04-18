@@ -90,7 +90,7 @@ module LaunchAgent
 
     def job_id
       DOMAIN + '.' + @args.inject([]) do |m, arg|
-        m << arg.gsub(/\W/, '_')
+        m << arg.to_s.gsub(/\W/, '_')
       end.join('__')
     end
   end

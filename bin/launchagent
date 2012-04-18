@@ -21,14 +21,14 @@ EOS
     abort 'full command must be supplised' if command.argv.empty?
 
     daemon  = command.opts[:daemon]
-    integer = command.opts[:interval]
+    interval = command.opts[:interval]
     env     = command.opts[:env]
     agent   = nil
 
     if daemon
       agent = LaunchAgent::Daemon.new(*command.argv)
     elsif command.opts.interval
-      agent = LaunchAgent::Daemon.new(interval, *command.argv)
+      agent = LaunchAgent::Periodic.new(interval, *command.argv)
     else
       abort 'at least one of --daemon and --interval must be set'
     end
