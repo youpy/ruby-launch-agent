@@ -15,33 +15,17 @@ Load/Unload a launchd agent
 EOS
   opt :env, "additional environmental variables to be set before running the job. can specify multiple times. e.g. RAILS_ENV=development", :type => String, :multi => true
   opt :daemon, "load as daemon. if it is set, --interval option is ignored", :default => false
+  opt :wdir, "specify a directory to chdir(2) to before running the job", :type => String
   opt :interval, "causes the job to be started every N seconds", :type => Integer
 
   run do |command|
-    abort 'full command must be supplied' if command.argv.empty?
-
-    daemon  = command.opts[:daemon]
-    interval = command.opts[:interval]
-    env     = command.opts[:env]
-    agent   = nil
-
-    if daemon
-      agent = LaunchAgent::Daemon.new(*command.argv)
-    elsif command.opts.interval
-      agent = LaunchAgent::Periodic.new(interval, *command.argv)
-    else
-      abort 'at least one of --daemon and --interval must be set'
+    begin
+      agent = LaunchAgent::CLI::OptionParser.new(command.opts, command.argv).agent
+      action = agent.loaded? ? :unload : :load
+      agent.send(action)
+      puts '%s "%s"' % [action, command.argv.join(' ')]
+    rescue => e
+      abort e.message
     end
-
-    agent['EnvironmentVariables'] = env.inject({}) do |memo, e|
-      k, v = e.split('=')
-      memo[k] = v
-      memo
-    end
-
-    action = agent.loaded? ? :unload : :load
-    agent.send(action)
-
-    puts '%s "%s"' % [action, command.argv.join(' ')]
   end
 end
