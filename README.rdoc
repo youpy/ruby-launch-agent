@@ -1,4 +1,4 @@
-= ruby-launch-agent
+= ruby-launch-agent {<img src="https://secure.travis-ci.org/youpy/ruby-launch-agent.png?branch=master" />}[http://travis-ci.org/youpy/ruby-launch-agent]
 
 A library to use launchd easily
 
