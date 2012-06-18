@@ -1,31 +1,30 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
 require 'launch_agent'
-require 'git-style-binary/command'
+require 'docopt'
 
-GitStyleBinary.primary do
-  version "launch-agent #{LaunchAgent::VERSION}"
+program_name = File.basename($0)
+doc =<<-EOS
+Usage:
+  #{program_name} [--env=<env>] (--daemon | --interval <sec>) [--wdir=<dir>] [--] (<argument>...)
+  #{program_name} -h | --help
 
-  short_desc "load/unload a launchd agent"
-  banner <<-EOS
-Usage: #{command.full_name} #{all_options_string} {full command}
-
-Load/Unload a launchd agent
-
+Options:
+  -h --help              Show this screen.
+  -e --env=<env>         Additional environmental variables to be set before running the job. Can specify multiple value with comma. e.g. FOO=bar,BAR=baz
+  -w --wdir=<dir>        Specify a directory to chdir(2) to before running the job
+  -d --daemon            Load as daemon. If it is set, --interval option is ignored.
+  -i --interval=<sec>    Causes the job to be started every N seconds
 EOS
-  opt :env, "additional environmental variables to be set before running the job. can specify multiple times. e.g. RAILS_ENV=development", :type => String, :multi => true
-  opt :daemon, "load as daemon. if it is set, --interval option is ignored", :default => false
-  opt :wdir, "specify a directory to chdir(2) to before running the job", :type => String
-  opt :interval, "causes the job to be started every N seconds", :type => Integer
 
-  run do |command|
-    begin
-      agent = LaunchAgent::CLI::OptionParser.new(command.opts, command.argv).agent
-      action = agent.loaded? ? :unload : :load
-      agent.send(action)
-      puts '%s "%s"' % [action, command.argv.join(' ')]
-    rescue => e
-      abort e.message
-    end
-  end
+options = Docopt(doc, LaunchAgent::VERSION)
+
+begin
+  agent = LaunchAgent::CLI::OptionParser.new(options, ARGV).agent
+  action = agent.loaded? ? :unload : :load
+  agent.send(action)
+  puts '%s "%s"' % [action, ARGV.join(' ')]
+rescue => e
+  abort e.message
 end

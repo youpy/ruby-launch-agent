@@ -6,7 +6,7 @@ describe CLI::OptionParser do
   before do
     @argv = %w/ruby foo.rb/
     @opts = {
-      :env => []
+      :env => ''
     }
   end
 
@@ -85,7 +85,7 @@ describe CLI::OptionParser do
     let(:opts) do
       @opts.merge(
         :daemon => true,
-        :env => ['FOO=BAR','BAR=BAZ'])
+        :env => 'FOO=BAR,BAR=BAZ')
     end
 
     it_should_behave_like 'valid agent'
@@ -101,7 +101,7 @@ describe CLI::OptionParser do
   describe 'interval' do
     let(:opts) do
       @opts.merge(
-        :interval => 120)
+        :interval => "120")
     end
 
     it_should_behave_like 'valid agent'

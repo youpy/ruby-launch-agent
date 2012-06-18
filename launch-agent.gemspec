@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = LaunchAgent::VERSION
 
   gem.add_dependency('plist')
-  gem.add_dependency('git-style-binaries')
+  gem.add_dependency('docopt')
   gem.add_development_dependency('rspec', ['~> 2.8.0'])
   gem.add_development_dependency('rake')
 end

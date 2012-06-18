@@ -11,14 +11,14 @@ module LaunchAgent
 
         daemon   = @opts[:daemon]
         interval = @opts[:interval]
-        env      = @opts[:env]
+        env      = @opts[:env].split(',')
         wdir     = @opts[:wdir]
         agent    = nil
 
         if daemon
           agent = LaunchAgent::Daemon.new(*@argv)
         elsif interval
-          agent = LaunchAgent::Periodic.new(interval, *@argv)
+          agent = LaunchAgent::Periodic.new(interval.to_i, *@argv)
         else
           raise 'at least one of --daemon and --interval must be set'
         end
