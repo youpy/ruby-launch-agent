@@ -33,6 +33,16 @@ describe CLI::OptionParser do
     end
   end
 
+  describe 'empty env' do
+    let(:opts) do
+      @opts.merge(
+        :env => nil,
+        :daemon => true)
+    end
+
+    it_should_behave_like 'valid agent'
+  end
+
   describe 'empty options' do
     let(:opts) do
       @opts

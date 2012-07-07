@@ -11,7 +11,7 @@ module LaunchAgent
 
         daemon   = @opts[:daemon]
         interval = @opts[:interval]
-        env      = @opts[:env].split(',')
+        env      = (@opts[:env] || '').split(',')
         wdir     = @opts[:wdir]
         agent    = nil
 
