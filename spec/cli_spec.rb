@@ -11,7 +11,7 @@ describe 'CLI' do
   end
 
   it 'should load/unload daemon-like agent' do
-    command = File.expand_path(File.dirname(__FILE__) + '/../bin/launchagent --daemon --env FOO=BAR ruby foo.rb')
+    command = File.expand_path(File.dirname(__FILE__) + '/../bin/launchagent --daemon --env FOO=BAR -- ruby foo.rb')
 
     system(command)
 

@@ -23,7 +23,7 @@ describe CLI::OptionParser do
   describe 'empty argv' do
     let(:opts) do
       @opts.merge(
-        :daemon => true)
+        '--daemon' => true)
     end
 
     it 'should raise if argv is empty' do
@@ -36,8 +36,8 @@ describe CLI::OptionParser do
   describe 'empty env' do
     let(:opts) do
       @opts.merge(
-        :env => nil,
-        :daemon => true)
+        '--env' => nil,
+        '--daemon' => true)
     end
 
     it_should_behave_like 'valid agent'
@@ -58,7 +58,7 @@ describe CLI::OptionParser do
   describe 'daemon' do
     let(:opts) do
       @opts.merge(
-        :daemon => true)
+        '--daemon' => true)
     end
 
     it_should_behave_like 'valid agent'
@@ -77,8 +77,8 @@ describe CLI::OptionParser do
   describe 'wdir' do
     let(:opts) do
       @opts.merge(
-        :daemon => true,
-        :wdir => '/foo/bar')
+        '--daemon' => true,
+        '--wdir' => '/foo/bar')
     end
 
     it_should_behave_like 'valid agent'
@@ -94,8 +94,8 @@ describe CLI::OptionParser do
   describe 'env' do
     let(:opts) do
       @opts.merge(
-        :daemon => true,
-        :env => 'FOO=BAR,BAR=BAZ')
+        '--daemon' => true,
+        '--env' => 'FOO=BAR,BAR=BAZ')
     end
 
     it_should_behave_like 'valid agent'
@@ -111,7 +111,7 @@ describe CLI::OptionParser do
   describe 'interval' do
     let(:opts) do
       @opts.merge(
-        :interval => "120")
+        '--interval' => "120")
     end
 
     it_should_behave_like 'valid agent'

@@ -7,24 +7,25 @@ require 'docopt'
 program_name = File.basename($0)
 doc =<<-EOS
 Usage:
-  #{program_name} [--env=<env>] (--daemon | --interval <sec>) [--wdir=<dir>] [--] (<argument>...)
+  #{program_name} [--env=<env>] (--daemon | --interval <sec>) [--wdir=<dir>] (<argument>...)
   #{program_name} -h | --help
 
 Options:
   -h --help              Show this screen.
+  -v --version           Show version information.
   -e --env=<env>         Additional environmental variables to be set before running the job. Can specify multiple value with comma. e.g. FOO=bar,BAR=baz
   -w --wdir=<dir>        Specify a directory to chdir(2) to before running the job
   -d --daemon            Load as daemon. If it is set, --interval option is ignored.
   -i --interval=<sec>    Causes the job to be started every N seconds
 EOS
 
-options = Docopt(doc, LaunchAgent::VERSION)
-
 begin
-  agent = LaunchAgent::CLI::OptionParser.new(options, ARGV).agent
+  options = Docopt::docopt(doc, :version => LaunchAgent::VERSION)
+
+  agent = LaunchAgent::CLI::OptionParser.new(options, options['<argument>']).agent
   action = agent.loaded? ? :unload : :load
   agent.send(action)
-  puts '%s "%s"' % [action, ARGV.join(' ')]
-rescue => e
-  abort e.message
+  puts '%s "%s"' % [action, agent.args.join(' ')]
+rescue Docopt::Exit => e
+  puts e.message
 end

@@ -1,5 +1,7 @@
 module LaunchAgent
   class Base
+    attr_reader :args
+
     DOMAIN = 'com.buycheapviagraonlinenow'
     KEYS = [
       'Label',
