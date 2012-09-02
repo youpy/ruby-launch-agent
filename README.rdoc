@@ -17,6 +17,16 @@ A library to use launchd easily
 == CLI
 
  $ launchagent -h
+ Usage:
+   launchagent [--env=<env>] (--daemon | --interval <sec>) [--wdir=<dir>] [--] (<argument>...)
+   launchagent -h | --help
+
+ Options:
+   -h --help              Show this screen.
+   -e --env=<env>         Additional environmental variables to be set before running the job. Can specify multiple value with comma. e.g. FOO=bar,BAR=baz
+   -w --wdir=<dir>        Specify a directory to chdir(2) to before running the job
+   -d --daemon            Load as daemon. If it is set, --interval option is ignored.
+   -i --interval=<sec>    Causes the job to be started every N seconds
 
 == Note on Patches/Pull Requests
  
