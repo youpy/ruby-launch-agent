@@ -13,11 +13,13 @@ module LaunchAgent
       def agent
         raise 'full command must be supplied' if @argv.empty?
 
-        daemon   = @opts['--daemon']
-        interval = @opts['--interval']
-        env      = (@opts['--env'] || '').split(',')
-        wdir     = @opts['--wdir']
-        agent    = nil
+        daemon      = @opts['--daemon']
+        interval    = @opts['--interval']
+        env         = (@opts['--env'] || '').split(',')
+        wdir        = @opts['--wdir']
+        stdout_path = @opts['--stdout']
+        stderr_path = @opts['--stderr']
+        agent       = nil
 
         if daemon
           agent = LaunchAgent::Daemon.new(*@argv)
@@ -35,6 +37,14 @@ module LaunchAgent
 
         if wdir
           agent['WorkingDirectory'] = File.expand_path(wdir)
+        end
+
+        if stdout_path
+          agent['StandardOutPath'] = File.expand_path(stdout_path)
+        end
+
+        if stderr_path
+          agent['StandardErrorPath'] = File.expand_path(stderr_path)
         end
 
         agent

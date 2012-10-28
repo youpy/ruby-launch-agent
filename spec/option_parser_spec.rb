@@ -108,6 +108,40 @@ describe CLI::OptionParser do
     end
   end
 
+  describe '--stdout' do
+    let(:opts) do
+      @opts.merge(
+        '--daemon' => true,
+        '--stdout' => '~/foo/bar.log')
+    end
+
+    it_should_behave_like 'valid agent'
+
+    it 'should parse env option' do
+      agent = CLI::OptionParser.new(opts, @argv).agent
+      plist = agent2plist(agent)
+
+      plist['StandardOutPath'].should eql(File.expand_path('~/foo/bar.log'))
+    end
+  end
+
+  describe '--stderr' do
+    let(:opts) do
+      @opts.merge(
+        '--daemon' => true,
+        '--stderr' => '~/foo/bar.log')
+    end
+
+    it_should_behave_like 'valid agent'
+
+    it 'should parse env option' do
+      agent = CLI::OptionParser.new(opts, @argv).agent
+      plist = agent2plist(agent)
+
+      plist['StandardErrorPath'].should eql(File.expand_path('~/foo/bar.log'))
+    end
+  end
+
   describe 'interval' do
     let(:opts) do
       @opts.merge(
