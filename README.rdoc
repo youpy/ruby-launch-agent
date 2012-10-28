@@ -16,17 +16,20 @@ A library to use launchd easily
 
 == CLI
 
- $ launchagent -h
+ % launchagent -h
  Usage:
-   launchagent [--env=<env>] (--daemon | --interval <sec>) [--wdir=<dir>] [--] (<argument>...)
+   launchagent [--env=<env>] (--daemon | --interval <sec>) [--wdir=<dir>] [--stdout=<path>] [--stderr=<path>] (<argument>...)
    launchagent -h | --help
 
  Options:
    -h --help              Show this screen.
+   -v --version           Show version information.
    -e --env=<env>         Additional environmental variables to be set before running the job. Can specify multiple value with comma. e.g. FOO=bar,BAR=baz
    -w --wdir=<dir>        Specify a directory to chdir(2) to before running the job
-   -d --daemon            Load as daemon. If it is set, --interval option is ignored.
+   -d --daemon            Load as daemon. If it is set, --interval option is ignored
    -i --interval=<sec>    Causes the job to be started every N seconds
+   -o --stdout=<path>     Specify what file should be used for data being sent to stdout when using stdio(3)
+   -r --stderr=<path>     Specify what file should be used for data being sent to stderr when using stdio(3)
 
 == Note on Patches/Pull Requests
  
