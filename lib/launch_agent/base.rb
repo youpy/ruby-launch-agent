@@ -68,7 +68,7 @@ module LaunchAgent
     end
 
     def loaded?
-      system("launchctl list -x #{job_id}")
+      system("launchctl list #{job_id}")
     end
 
     def []=(key, value)
